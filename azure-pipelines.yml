@@ -22,7 +22,7 @@ jobs:
           project: 'jmeter'
           pipeline: ${system.definitionId}
           runVersion: 'specific'
-          runId: 18
+          runId: $(BuildId)-1
 
       - task: CmdLine@2
         displayName: List_Past_Artifacts
