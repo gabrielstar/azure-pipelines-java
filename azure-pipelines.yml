@@ -12,6 +12,15 @@ jobs:
 
     timeoutInMinutes: 5
     steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          source: 'specific'
+          artifact: 'JmeterReport'
+          path: $(Build.SourcesDirectory)/bin
+          project: 'jmeter'
+          pipeline: ${system.definitionId}
+          runVersion: 'specific'
+          runId: 18
       - task: Maven@3
         displayName: Run_JMeter_Tests_WithMaven
         inputs:
@@ -27,15 +36,7 @@ jobs:
         displayName: List_JMeter_ReportDir
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          source: 'specific'
-          artifact: 'JmeterReport'
-          path: $(Build.SourcesDirectory)/bin
-          project: 'jmeter'
-          pipeline: ${system.definitionId}
-          runVersion: 'specific'
-          runId: 18
+
       - script: 'pip install chart_studio'
         displayName: Install_Python_Libs
       - task: PythonScript@0
