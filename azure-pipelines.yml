@@ -21,7 +21,7 @@ jobs:
           project: 'jmeter'
           pipeline: ${system.definitionId}
           runVersion: 'specific'
-          runId: $(System.JobId)
+          runId: $(Build.BuildNumber)
 
       - task: CmdLine@2
         displayName: List_Past_Artifacts
