@@ -5,9 +5,8 @@
 
 trigger:
   - master
-  -
 jobs:
-  - job: Run Jmeter Tests
+  - job: Run_Jmeter_Tests
     pool:
       vmImage: 'ubuntu-latest'
 
