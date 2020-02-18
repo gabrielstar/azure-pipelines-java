@@ -20,7 +20,10 @@
   <properties>
     <maxUsers>1</maxUsers>
     <testScenario>example-performance-test.jmx</testScenario>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+
 
   <build>
     <finalName>helloworld</finalName>
@@ -75,9 +78,4 @@
     </plugins>
   </build>
 
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
-	
 </project>
