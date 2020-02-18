@@ -27,6 +27,11 @@ jobs:
         displayName: List_JMeter_ReportDir
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
+      - task: PythonScript@0
+        inputs:
+          scriptSource: 'filePath'
+          scriptPath: $(System.DefaultWorkingDirectory)/target/charts.py
+
       - task: PublishPipelineArtifact@1
         displayName: Archive_JMeter_Report
         inputs:
