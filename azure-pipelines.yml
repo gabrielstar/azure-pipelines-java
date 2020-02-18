@@ -28,6 +28,7 @@ jobs:
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
       - task: PythonScript@0
+        displayName: Run Trend Reports
         inputs:
           scriptSource: 'filePath'
           scriptPath: $(System.DefaultWorkingDirectory)/target/charts.py
