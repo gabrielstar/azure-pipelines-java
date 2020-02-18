@@ -13,6 +13,7 @@ jobs:
     timeoutInMinutes: 5
     steps:
       - task: Maven@3
+        displayName: Run_JMeter_Tests_WithMaven
         inputs:
           mavenPomFile: 'pom.xml'
           mavenOptions: '-Xmx3072m'
@@ -23,9 +24,11 @@ jobs:
           testResultsFiles: '**/surefire-reports/TEST-*.xml'
           goals: 'verify'
       - task: CmdLine@2
+        displayName: List_JMeter_ReportDir
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
       - task: PublishPipelineArtifact@1
+        displayName: Archive_JMeter_Report
         inputs:
           path: $(System.DefaultWorkingDirectory)/target/jmeter/reports
           artifact: JmeterReport
