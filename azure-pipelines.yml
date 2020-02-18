@@ -26,7 +26,7 @@ jobs:
       - task: CmdLine@2
         displayName: List_Past_Artifacts
         inputs:
-          script: 'ls -alh $(Build.SourcesDirectory)/history/target/jmeter/reports'
+          script: 'ls -alh $(Build.SourcesDirectory)/history'
 
       - task: Maven@3
         displayName: Run_JMeter_Tests_WithMaven
