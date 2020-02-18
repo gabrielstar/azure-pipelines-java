@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/gstarczewski/jmeter/_apis/build/status/gabrielstar.azure-pipelines-java?branchName=master)](https://dev.azure.com/gstarczewski/jmeter/_build/latest?definitionId=1&branchName=master)
 
 # Contributing
 
