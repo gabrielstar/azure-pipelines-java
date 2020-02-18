@@ -3,12 +3,14 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+trigger:
+  - master
+  -
 jobs:
   - job: Run Jmeter Tests
     pool:
       vmImage: 'ubuntu-latest'
-    trigger:
-      - master
+
     timeoutInMinutes: 5
     steps:
       - task: Maven@3
