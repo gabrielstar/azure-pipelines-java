@@ -3,6 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 #https://dev.azure.com/gstarczewski/jmeter/_apis/build/builds?api-version=5.1
+name: $(BuildID)
 trigger:
   - master
 jobs:
@@ -21,7 +22,7 @@ jobs:
           project: 'jmeter'
           pipeline: ${system.definitionId}
           runVersion: 'specific'
-          runId: $(Build.BuildNumber)
+          runId: 18
 
       - task: CmdLine@2
         displayName: List_Past_Artifacts
