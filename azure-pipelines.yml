@@ -27,6 +27,8 @@ jobs:
         displayName: List_JMeter_ReportDir
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
+      - script: 'pip install chart_studio'
+        displayName: Install_Python_Libs
       - task: PythonScript@0
         displayName: Run Trend Reports
         inputs:
