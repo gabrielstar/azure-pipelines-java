@@ -22,7 +22,7 @@ steps:
       goals: 'verify'
   - task: CmdLine@2
     inputs:
-      script: 'ls -alh target/jmeter/reports'
+      script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
   - task: PublishPipelineArtifact@1
     inputs:
       path: $(System.DefaultWorkingDirectory)/target/jmeter/reports
