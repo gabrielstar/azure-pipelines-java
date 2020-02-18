@@ -13,14 +13,21 @@ jobs:
     timeoutInMinutes: 5
     steps:
       - task: DownloadPipelineArtifact@2
+        displayName: Download_Past_Builds_Artifacts
         inputs:
           source: 'specific'
           artifact: 'JmeterReport'
-          path: $(Build.SourcesDirectory)/bin
+          path: $(Build.SourcesDirectory)/history
           project: 'jmeter'
           pipeline: ${system.definitionId}
           runVersion: 'specific'
           runId: 18
+
+      - task: CmdLine@2
+        displayName: List_Past_Artifacts
+        inputs:
+          script: 'ls -alh $(Build.SourcesDirectory)/history/target/jmeter/reports'
+
       - task: Maven@3
         displayName: Run_JMeter_Tests_WithMaven
         inputs:
@@ -32,6 +39,7 @@ jobs:
           publishJUnitResults: true
           testResultsFiles: '**/surefire-reports/TEST-*.xml'
           goals: 'verify'
+
       - task: CmdLine@2
         displayName: List_JMeter_ReportDir
         inputs:
@@ -39,6 +47,7 @@ jobs:
 
       - script: 'pip install chart_studio'
         displayName: Install_Python_Libs
+
       - task: PythonScript@0
         displayName: Run Trend Reports
         inputs:
