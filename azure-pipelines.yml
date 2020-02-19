@@ -14,7 +14,7 @@ jobs:
     timeoutInMinutes: 5
     steps:
       - bash: |
-          echo '##vso[task.setvariable variable=previousBuildId]'$((BuildID-2))
+          echo '##vso[task.setvariable variable=previousBuildId]'$(($(Build.BuildNumber)-2))
       - bash: echo $(previousBuildId)        # This will be 20, since the variables are expanded just before the step
 
       - task: DownloadPipelineArtifact@2
@@ -26,7 +26,7 @@ jobs:
           project: 'jmeter'
           pipeline: ${system.definitionId}
           runVersion: 'specific'
-          runId: $(BuildId)-1
+          runId: $(Build.BuildNumber)
 
       - task: CmdLine@2
         displayName: List_Past_Artifacts
