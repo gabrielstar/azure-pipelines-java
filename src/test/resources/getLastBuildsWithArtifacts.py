@@ -31,3 +31,7 @@ for id in ids:
     except Exception as e:
         print "Could not get artifact for the build %s" % id
         print "Due to %s" % e
+print "TMP path: "
+print "%s/%s" % (os.getcwd(),'tmp')
+print "Contents: "
+print os.listdir("%s/%s" % (os.getcwd(),'tmp'))
