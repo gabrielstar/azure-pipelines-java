@@ -39,6 +39,11 @@ jobs:
             scriptSource: 'filePath'
             scriptPath: $(System.DefaultWorkingDirectory)/target/getLastBuildsWithArtifacts.py
 
+\      - task: CmdLine@2
+          displayName: List_Last_Reports
+          inputs:
+            script: 'ls -alh $(System.DefaultWorkingDirectory)/target/tmp'
+
       - task: PythonScript@0
         displayName: Run Trend Reports
         inputs:

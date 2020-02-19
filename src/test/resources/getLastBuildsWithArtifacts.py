@@ -1,4 +1,5 @@
 import requests
+import os
 
 url = r"https://dev.azure.com/gstarczewski/jmeter/_apis/build/builds"
 payload = {'api-version': '5.1', 'resultFilter': 'succeeded'}
@@ -16,6 +17,7 @@ for id in ids:
     try:
         download_url = r.json()['value'][0]['resource']['downloadUrl']
         r = requests.get(download_url)
+        os.mkdir('tmp')
         with open("tmp/%s_%s.zip" % (id, artifact), "wb") as f:
             f.write(r.content)
     except IOError:
