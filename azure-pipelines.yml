@@ -16,7 +16,7 @@ jobs:
       - bash: |
           echo $(previousBuildId)
           echo '##vso[task.setvariable variable=a]'$((3-2))
-        - bash: echo $(previousBuildId)        # This will be 20, since the variables are expanded just before the step
+      - bash: echo $(previousBuildId)        # This will be 20, since the variables are expanded just before the step
 
       - task: DownloadPipelineArtifact@2
         displayName: Download_Past_Builds_Artifacts
