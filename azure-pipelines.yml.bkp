@@ -13,6 +13,26 @@ jobs:
 
     timeoutInMinutes: 5
     steps:
+      - bash: |
+          echo '##vso[task.setvariable variable=previousBuildId]'$(($(Build.BuildNumber)-2))
+      - bash: echo $(previousBuildId)        # This will be 20, since the variables are expanded just before the step
+
+      - task: DownloadPipelineArtifact@2
+        displayName: Download_Past_Builds_Artifacts
+        inputs:
+          source: 'specific'
+          artifact: 'JmeterReport'
+          path: $(Build.SourcesDirectory)/history
+          project: 'jmeter'
+          pipeline: ${system.definitionId}
+          runVersion: 'specific'
+          runId: $(previousBuildId)
+
+      - task: CmdLine@2
+        displayName: List_Past_Artifacts
+        inputs:
+          script: 'ls -alh $(Build.SourcesDirectory)/history'
+
       - task: Maven@3
         displayName: Run_JMeter_Tests_WithMaven
         inputs:
@@ -30,14 +50,8 @@ jobs:
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
 
-      - script: 'pip install chart_studio requests'
+      - script: 'pip install chart_studio'
         displayName: Install_Python_Libs
-
-      - task: PythonScript@0
-          displayName: Fetch Reports for last successful builds
-          inputs:
-            scriptSource: 'filePath'
-            scriptPath: $(System.DefaultWorkingDirectory)/target/getLastBuildsWithArtifacts.py
 
       - task: PythonScript@0
         displayName: Run Trend Reports
