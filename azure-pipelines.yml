@@ -34,10 +34,10 @@ jobs:
         displayName: Install_Python_Libs
 
       - task: PythonScript@0
-          displayName: Fetch Reports For Last Successful Builds
-          inputs:
-            scriptSource: 'filePath'
-            scriptPath: $(System.DefaultWorkingDirectory)/target/getLastBuildsWithArtifacts.py
+        displayName: Fetch Reports For Last Successful Builds
+        inputs:
+          scriptSource: 'filePath'
+          scriptPath: $(System.DefaultWorkingDirectory)/target/getLastBuildsWithArtifacts.py
 
       - task: CmdLine@2
           displayName: List_Last_Reports
