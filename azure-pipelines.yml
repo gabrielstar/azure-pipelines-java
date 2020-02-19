@@ -30,7 +30,7 @@ jobs:
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/target/jmeter/reports'
 
-      - script: 'pip install chart_studio requests'
+      - script: pip install -r $(System.DefaultWorkingDirectory)/target/requirements.txt
         displayName: Install Python Libs
 
       - task: PythonScript@0
