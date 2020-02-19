@@ -1,3 +1,5 @@
 requests
 chart_studio
 zipfile36
+plotly
+logging
