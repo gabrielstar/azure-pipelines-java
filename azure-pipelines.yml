@@ -14,7 +14,7 @@ jobs:
     timeoutInMinutes: 5
     steps:
       - task: Maven@3
-        displayName: Run_JMeter_Tests_WithMaven
+        displayName: Run JMeter Tests
         inputs:
           mavenPomFile: 'pom.xml'
           mavenOptions: '-Xmx3072m'
@@ -40,7 +40,7 @@ jobs:
           scriptPath: $(System.DefaultWorkingDirectory)/target/getLastBuildsWithArtifacts.py
 
       - task: CmdLine@2
-        displayName: List_Last_Reports
+        displayName: List Last Reports
         inputs:
           script: 'ls -alh $(System.DefaultWorkingDirectory)/tmp'
 
@@ -51,7 +51,7 @@ jobs:
           scriptPath: $(System.DefaultWorkingDirectory)/target/trend_charts.py
 
       - task: PublishPipelineArtifact@1
-        displayName: Archive_JMeter_Report
+        displayName: Archive JMeter Report
         inputs:
           path: $(System.DefaultWorkingDirectory)/target/jmeter/reports
           artifact: JmeterReport
