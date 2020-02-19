@@ -10,17 +10,24 @@ values = r.json()['value']
 previous_builds_number = 2
 # fetch last successful builds ids
 ids = list(map(lambda v: v['id'], values))[:previous_builds_number]
-
+print "ids found "
+print ids
 payload = {'api-version': '5.1', 'artifactName': artifact}
 for id in ids:
     r = requests.get("%s/%s/artifacts" % (url, id))
     try:
         download_url = r.json()['value'][0]['resource']['downloadUrl']
         r = requests.get(download_url)
-        os.mkdir('tmp')
+        path = os.getcwd()
+        try:
+            os.mkdir("%s/%s" % (path,'tmp'))
+        except:
+            pass
         with open("tmp/%s_%s.zip" % (id, artifact), "wb") as f:
             f.write(r.content)
-    except IOError:
+    except IOError as e:
         print "Could not fetch the file for the build %s" % id
-    except:
+        print "Due to %s" % e
+    except Exception as e:
         print "Could not get artifact for the build %s" % id
+        print "Due to %s" % e
