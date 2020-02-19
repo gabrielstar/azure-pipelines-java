@@ -42,7 +42,7 @@ jobs:
       - task: CmdLine@2
         displayName: List_Last_Reports
         inputs:
-          script: 'ls -alh $(System.DefaultWorkingDirectory)/target/tmp'
+          script: 'ls -alh $(System.DefaultWorkingDirectory)/tmp'
 
       - task: PythonScript@0
         displayName: Run Trend Reports
